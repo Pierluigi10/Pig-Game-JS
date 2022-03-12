@@ -1,7 +1,6 @@
 "use strict";
 // Selecting elements
-// const score0El = document.getElementById("score--0")
-// const score1El = document.getElementById("score--1")
+
 const player0El = document.querySelector(".player--0");
 const player1El = document.querySelector(".player--1");
 const score0El = document.querySelector("#score--0");
@@ -50,7 +49,6 @@ btnRoll.addEventListener("click", function () {
   if (playing) {
     // 1. Generating a random dice rolling
     const dice = Math.trunc(Math.random() * 6) + 1;
-    //   console.log(dice);
 
     // 2. Display dice
     diceEl.classList.remove("hidden");
@@ -71,17 +69,17 @@ btnRoll.addEventListener("click", function () {
 
 btnHold.addEventListener("click", function () {
   if (playing) {
-    //   console.log("Hold button clicked");
     // 1. add current score to active player's score
     scores[activePlayer] += currentScore; // ex. scores[1] = scores[1] + currentScore
     //   console.log(scores[activePlayer]);
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
+
     // 2. Check if player's score is >= 100
     // Finish the game
     playing = false;
     diceEl.classList.add("hidden");
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add("player--winner");
@@ -95,15 +93,4 @@ btnHold.addEventListener("click", function () {
   }
 });
 
-// btnNew.addEventListener("click", function () {
-//   player0El.classList.remove("player--winner");
-//   player1El.classList.remove("player--winner");
-//   player0El.classList.add("player--active");
-//   player1El.classList.remove("player--active");
-//   score0El.textContent = 0;
-//   score1El.textContent = 0;
-//   playing = true;
-// });
-
-
-btnNew.addEventListener('click', init);
+btnNew.addEventListener("click", init);
