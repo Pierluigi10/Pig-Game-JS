@@ -58,15 +58,22 @@ btnRoll.addEventListener("click", function () {
 });
 
 btnHold.addEventListener("click", function () {
-//   console.log("Hold button clicked");
+  //   console.log("Hold button clicked");
   // 1. add current score to active player's score
   scores[activePlayer] += currentScore; // ex. scores[1] = scores[1] + currentScore
-//   console.log(scores[activePlayer]);
+  //   console.log(scores[activePlayer]);
   document.getElementById(`score--${activePlayer}`).textContent =
     scores[activePlayer];
   // 2. Check if player's score is >= 100
-  // Finish the game if player
-
+  // Finish the game 
+  if (scores[activePlayer] >= 100) {
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add("player--winner");
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove("player--active");
+  }
   // Switch to the next player
   switchPlayer();
 });
