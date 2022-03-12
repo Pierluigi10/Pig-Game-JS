@@ -1,12 +1,9 @@
 "use strict";
-
 // Selecting elements
-
 // const score0El = document.getElementById("score--0")
 // const score1El = document.getElementById("score--1")
 const player0El = document.querySelector(".player--0");
 const player1El = document.querySelector(".player--1");
-
 const score0El = document.querySelector("#score--0");
 const score1El = document.querySelector("#score--1");
 const current0El = document.getElementById("current--0");
@@ -31,12 +28,12 @@ const switchPlayer = () => {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   currentScore = 0;
   activePlayer = activePlayer === 0 ? 1 : 0;
+  console.log(activePlayer);
   player0El.classList.toggle("player--active");
   player1El.classList.toggle("player--active");
 };
 
 // Rolling dice functionality
-
 btnRoll.addEventListener("click", function () {
   if (playing) {
     // 1. Generating a random dice rolling
@@ -80,7 +77,18 @@ btnHold.addEventListener("click", function () {
         .querySelector(`.player--${activePlayer}`)
         .classList.remove("player--active");
     }
+
     // Switch to the next player
     switchPlayer();
   }
+});
+
+btnNew.addEventListener("click", function () {
+  player0El.classList.remove("player--winner");
+  player1El.classList.remove("player--winner");
+  player0El.classList.add("player--active");
+  player1El.classList.remove("player--active");
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  playing = true;
 });
